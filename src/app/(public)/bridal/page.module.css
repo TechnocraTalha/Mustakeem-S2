@@ -1,0 +1,105 @@
+.bridalPage {
+  padding-top: var(--spacing-xl);
+}
+
+.hero {
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  background-color: var(--color-surface);
+}
+
+.heroText {
+  font-size: 3rem;
+  color: var(--color-text-primary);
+}
+
+.packagesGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .packagesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.packageCard {
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.packageName {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+.packagePrice {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--color-highlight);
+  margin-bottom: var(--spacing-md);
+}
+
+.featuresList {
+  list-style: none;
+  text-align: left;
+  display: inline-block;
+}
+
+.featureItem {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+}
+
+.checkmark {
+  color: var(--color-highlight);
+  margin-right: var(--spacing-sm);
+  font-weight: bold;
+}
+
+.consultationSplit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  background-color: white;
+  padding: var(--spacing-lg);
+  border-radius: 4px;
+  box-shadow: var(--shadow-subtle);
+}
+
+@media (min-width: 768px) {
+  .consultationSplit {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.text {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-md);
+}
+
+.imageWrapper {
+  flex: 1;
+  position: relative;
+  min-height: 400px;
+  border-radius: 4px;
+}
+
+.image {
+  object-fit: cover;
+}

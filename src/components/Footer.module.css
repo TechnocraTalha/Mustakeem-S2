@@ -1,0 +1,68 @@
+.footer {
+  background-color: var(--color-text-primary);
+  color: var(--color-surface);
+  padding-top: var(--spacing-xl);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-highlight);
+}
+
+.description {
+  color: rgba(250, 250, 245, 0.7);
+  max-width: 300px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-surface);
+}
+
+.text {
+  color: rgba(250, 250, 245, 0.7);
+  margin-bottom: var(--spacing-xs);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.links a {
+  color: rgba(250, 250, 245, 0.7);
+  transition: var(--transition-smooth);
+}
+
+.links a:hover {
+  color: var(--color-highlight);
+}
+
+.bottomBar {
+  border-top: 1px solid rgba(250, 250, 245, 0.1);
+  padding: var(--spacing-md) 0;
+  text-align: center;
+}
+
+.copyright {
+  color: rgba(250, 250, 245, 0.5);
+  font-size: 0.875rem;
+}

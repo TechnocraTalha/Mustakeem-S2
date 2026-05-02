@@ -1,0 +1,75 @@
+.contactPage {
+  padding-top: var(--spacing-xl);
+}
+
+.hero {
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+  background-color: var(--color-surface);
+}
+
+.heroText {
+  font-size: 3rem;
+  color: var(--color-text-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.infoCard {
+  background-color: white;
+  padding: var(--spacing-md);
+  border-radius: 4px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.infoTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+.infoText {
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.mapCard {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+}
+
+.mapImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.formTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-md);
+}

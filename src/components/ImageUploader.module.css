@@ -1,0 +1,31 @@
+.uploader {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.label {
+  display: inline-block;
+  background-color: var(--color-text-primary);
+  color: var(--color-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.label:hover {
+  background-color: var(--color-text-muted);
+}
+
+.fileInput {
+  display: none;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: var(--spacing-xs);
+}
