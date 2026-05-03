@@ -26,8 +26,8 @@ export default function ImageUploader({ onUploadSuccess }) {
           let height = img.height;
 
           // Max dimensions
-          const MAX_WIDTH = 800;
-          const MAX_HEIGHT = 800;
+          const MAX_WIDTH = 1920;
+          const MAX_HEIGHT = 1920;
 
           if (width > height) {
             if (width > MAX_WIDTH) {
@@ -46,8 +46,8 @@ export default function ImageUploader({ onUploadSuccess }) {
           const ctx = canvas.getContext("2d");
           ctx.drawImage(img, 0, 0, width, height);
 
-          // Compress to WebP (highly efficient, usually <100kb for 800px)
-          const dataUrl = canvas.toDataURL("image/webp", 0.8);
+          // Compress to WebP (highly efficient, retains high quality)
+          const dataUrl = canvas.toDataURL("image/webp", 0.92);
           
           if (onUploadSuccess) {
             onUploadSuccess(dataUrl);
