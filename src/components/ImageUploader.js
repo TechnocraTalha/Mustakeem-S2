@@ -21,13 +21,20 @@ export default function ImageUploader({ onUploadSuccess }) {
         const img = new Image();
         img.src = event.target.result;
         img.onload = () => {
+          // If original image is small enough (under ~700KB base64), use it directly for ZERO quality loss
+          if (event.target.result.length < 900000) {
+            if (onUploadSuccess) onUploadSuccess(event.target.result);
+            setUploading(false);
+            return;
+          }
+
           const canvas = document.createElement("canvas");
           let width = img.width;
           let height = img.height;
 
           // Max dimensions
-          const MAX_WIDTH = 1920;
-          const MAX_HEIGHT = 1920;
+          const MAX_WIDTH = 2000;
+          const MAX_HEIGHT = 2000;
 
           if (width > height) {
             if (width > MAX_WIDTH) {
@@ -44,10 +51,15 @@ export default function ImageUploader({ onUploadSuccess }) {
           canvas.width = width;
           canvas.height = height;
           const ctx = canvas.getContext("2d");
+          
+          // Enable high-quality smoothing
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = "high";
+          
           ctx.drawImage(img, 0, 0, width, height);
 
-          // Compress to WebP (highly efficient, retains high quality)
-          const dataUrl = canvas.toDataURL("image/webp", 0.92);
+          // Compress to JPEG for maximum compatibility and sharpness, high quality
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.95);
           
           if (onUploadSuccess) {
             onUploadSuccess(dataUrl);
