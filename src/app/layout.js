@@ -1,8 +1,8 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "L'ÉLÉGANCE - Redefining Masculine Sophistication",
-  description: "Experience the pinnacle of grooming where tradition meets contemporary refinement.",
+  title: "Mustakeem Handsome Salon - Premium Unisex Grooming",
+  description: "Experience the pinnacle of grooming where tradition meets contemporary refinement for men and women.",
 };
 
 export default function RootLayout({ children }) {

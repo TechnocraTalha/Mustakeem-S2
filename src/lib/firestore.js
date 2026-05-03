@@ -3,24 +3,36 @@ import { db } from "./firebase";
 import { fallbackData } from "./data";
 
 /**
+ * Wraps a promise with a timeout. If the promise doesn't resolve
+ * within `ms` milliseconds, it rejects with a timeout error.
+ */
+function withTimeout(promise, ms = 5000) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Firestore request timed out")), ms)
+    ),
+  ]);
+}
+
+import { getSiteConfigREST } from "./firestore-rest";
+
+/**
  * Safely fetches a document from the site_config collection.
- * If the database connection fails, it catches the error and returns the hardcoded fallback data.
- * @param {string} docId - The ID of the document (e.g., 'general', 'home').
+ * Uses the REST API to bypass Next.js Server Component gRPC crashes.
+ * Falls back to local hardcoded data on any failure.
  */
 export async function getSiteConfig(docId) {
   try {
-    const docRef = doc(db, "site_config", docId);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      return docSnap.data();
+    const data = await getSiteConfigREST(docId);
+    if (data) {
+      return data;
     } else {
       console.warn(`Document ${docId} not found in Firestore. Using fallback data.`);
       return fallbackData[docId] || {};
     }
   } catch (error) {
-    console.error(`Error fetching ${docId} from Firestore. Falling back to local data. Error:`, error);
-    // Silent fail-safe: return local fallback data
+    console.warn(`Firestore REST unavailable for ${docId}. Using fallback data.`);
     return fallbackData[docId] || {};
   }
 }
@@ -31,7 +43,7 @@ export async function getSiteConfig(docId) {
 export async function updateSiteConfig(docId, data) {
   try {
     const docRef = doc(db, "site_config", docId);
-    await setDoc(docRef, data, { merge: true });
+    await withTimeout(setDoc(docRef, data, { merge: true }), 10000);
     return true;
   } catch (error) {
     console.error(`Error updating ${docId}:`, error);
@@ -45,11 +57,14 @@ export async function updateSiteConfig(docId, data) {
 export async function submitContactMessage(data) {
   try {
     const colRef = collection(db, "contact_submissions");
-    await addDoc(colRef, {
-      ...data,
-      createdAt: serverTimestamp(),
-      read: false,
-    });
+    await withTimeout(
+      addDoc(colRef, {
+        ...data,
+        createdAt: serverTimestamp(),
+        read: false,
+      }),
+      10000
+    );
     return true;
   } catch (error) {
     console.error("Error submitting contact message:", error);
@@ -64,7 +79,7 @@ export async function getContactMessages() {
   try {
     const colRef = collection(db, "contact_submissions");
     const q = query(colRef, orderBy("createdAt", "desc"));
-    const querySnapshot = await getDocs(q);
+    const querySnapshot = await withTimeout(getDocs(q), 8000);
     const messages = [];
     querySnapshot.forEach((doc) => {
       const data = doc.data();
@@ -76,7 +91,7 @@ export async function getContactMessages() {
     });
     return messages;
   } catch (error) {
-    console.error("Error fetching contact messages:", error);
+    console.warn("Firestore unavailable for inbox. Returning empty.");
     return [];
   }
 }

@@ -1,6 +1,6 @@
 import { getSiteConfig } from "@/lib/firestore";
 
-export const revalidate = 60; // ISR every 60 seconds
+export const dynamic = 'force-dynamic'; // ISR every 60 seconds
 
 export default async function Portfolio() {
   const config = await getSiteConfig("portfolio");

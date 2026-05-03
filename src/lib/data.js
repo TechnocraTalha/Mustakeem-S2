@@ -1,13 +1,14 @@
 export const fallbackData = {
   general: {
-    phone: "+91 9876543210",
-    whatsapp: "+91 9876543210",
+    salonName: "Mustakeem Handsome Salon",
+    phone: "+91 8920784349",
+    whatsapp: "+91 8920784349",
     email: "hello@mustakeemsalon.com",
     address: {
-      street: "123 Luxury Lane",
-      city: "New Delhi",
+      street: "123 Heritage Lane",
+      city: "Old Delhi",
       state: "DL",
-      zip: "110001",
+      zip: "110006",
       country: "India",
     },
     socials: {
@@ -17,107 +18,90 @@ export const fallbackData = {
   },
   home: {
     hero: {
-      title: "Mustakeem Handsome Salon",
-      subtitle: "The Epitome of Quiet Luxury",
-      imageUrl: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=2000",
+      title: "Mustakeem Handsome Salon — Redefining Unisex Sophistication",
+      subtitle: "Experience the pinnacle of grooming where tradition meets contemporary refinement. Premium services for men & women.",
+      imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=2000",
     },
     featuredServices: [
-      {
-        id: "1",
-        name: "Signature Haircut",
-        description: "Bespoke styling tailored to your profile.",
-      },
-      {
-        id: "2",
-        name: "Royal Beard Grooming",
-        description: "Precision trimming and hot towel shave.",
-      },
-      {
-        id: "3",
-        name: "Revitalizing Facial",
-        description: "Deep cleansing and skin rejuvenation.",
-      },
+      { name: "Signature Haircut", description: "Bespoke styling tailored to your profile.", price: "₹500", imageUrl: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&q=80&w=800" },
+      { name: "Royal Beard Grooming", description: "Precision trimming and hot towel shave.", price: "₹300", imageUrl: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" },
+      { name: "Luxury Facial", description: "Deep cleansing and skin rejuvenation for all skin types.", price: "₹800", imageUrl: "https://images.unsplash.com/photo-1570172619644-defd82cbfa6f?auto=format&fit=crop&q=80&w=800" },
     ],
   },
   services: {
     heroText: "Our Services",
-    categories: [
-      {
-        id: "cat1",
-        title: "Hair Care",
-        imageUrl: "https://images.unsplash.com/photo-1622288432450-277d0fce5b15?auto=format&fit=crop&q=80&w=800",
-        treatments: [
-          { name: "Executive Haircut", price: "₹1,200", details: "Includes wash and styling" },
-          { name: "Hair Coloring", price: "From ₹2,500", details: "Ammonia-free luxury color" },
-        ],
-      },
-      {
-        id: "cat2",
-        title: "Beard Grooming",
-        imageUrl: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800",
-        treatments: [
-          { name: "Beard Trim & Shape", price: "₹600", details: "Precision styling" },
-          { name: "Classic Hot Towel Shave", price: "₹800", details: "Traditional straight razor" },
-        ],
-      },
+    items: [
+      { title: "Signature Haircut (Men)", price: "₹500", description: "Includes consultation, precision cut, hot towel finish, and styling.", image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800" },
+      { title: "Women's Haircut & Styling", price: "₹800", description: "Expert cut, blow-dry, and styling tailored to face shape and hair texture.", image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=800" },
+      { title: "Hair Coloring (Unisex)", price: "From ₹2,500", description: "Ammonia-free luxury color, highlights, balayage, or global color.", image: "https://images.unsplash.com/photo-1600948836101-f9ff166cc379?auto=format&fit=crop&q=80&w=800" },
+      { title: "Keratin Treatment", price: "From ₹3,500", description: "Premium smoothing treatment for frizz-free, silky hair lasting months.", image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=800" },
+      { title: "Beard Trim & Shape", price: "₹300", description: "Precision beard styling with hot towel and oils.", image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" },
+      { title: "Classic Hot Towel Shave", price: "₹400", description: "Traditional straight razor shave with pre-shave oils and soothing balm.", image: "https://images.unsplash.com/photo-1534281358913-7478051a84f3?auto=format&fit=crop&q=80&w=800" },
+      { title: "Luxury Facial (Unisex)", price: "₹800", description: "Deep cleanse, exfoliation, and hydrating mask for radiant skin.", image: "https://images.unsplash.com/photo-1570172619644-defd82cbfa6f?auto=format&fit=crop&q=80&w=800" },
+      { title: "Gold Facial", price: "₹1,500", description: "Premium gold-infused facial for instant glow and anti-aging benefits.", image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=800" },
+      { title: "Bridal Makeup", price: "From ₹8,000", description: "HD/Airbrush bridal makeup with trial session and premium cosmetics.", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=800" },
+      { title: "Party Makeup", price: "From ₹3,000", description: "Glamorous event-ready makeup with long-lasting, camera-ready finish.", image: "https://images.unsplash.com/photo-1512496015851-a1cbf486d081?auto=format&fit=crop&q=80&w=800" },
+      { title: "Threading & Waxing", price: "From ₹100", description: "Eyebrow threading, full face threading, arms, legs, and full body waxing.", image: "https://images.unsplash.com/photo-1556228578-8d89b6140b02?auto=format&fit=crop&q=80&w=800" },
+      { title: "Manicure & Pedicure", price: "From ₹500", description: "Classic, spa, or gel nail services with premium products.", image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=800" },
+      { title: "Hair Spa & Treatment", price: "₹1,200", description: "Deep conditioning, dandruff treatment, or hair fall control therapy.", image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800" },
+      { title: "Head Massage", price: "₹300", description: "Relaxing head and scalp massage with herbal oils.", image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&q=80&w=800" },
     ],
   },
   bridal: {
-    heroText: "Groom's Bespoke Experience",
-    consultation: {
-      text: "Book a personalized consultation for your special day.",
-      imageUrl: "https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?auto=format&fit=crop&q=80&w=1200",
-    },
-    packages: [
+    heroText: "Bridal & Groom Bespoke Experience",
+    items: [
       {
-        id: "pkg1",
-        name: "The Essential Groom",
-        price: "₹15,000",
-        features: [
-          "Pre-wedding consultation",
-          "Signature haircut & styling",
-          "Premium facial treatment",
-          "Beard grooming",
-        ],
+        title: "The Radiant Bride",
+        duration: "Full Day",
+        price: "₹25,000",
+        description: "Bridal Trial Makeup Session\nHD/Airbrush Bridal Makeup\nHair Styling & Setting\nDraping Assistance\nMehndi Day Makeup\nPre-wedding Skincare Facial\nManicure & Pedicure",
+        image: "https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&q=80&w=800",
       },
       {
-        id: "pkg2",
-        name: "The Royal Groom",
-        price: "₹25,000",
-        features: [
-          "Everything in Essential",
-          "Body spa & massage",
-          "Manicure & Pedicure",
-          "Touch-up on the wedding day",
-        ],
+        title: "The Royal Groom",
+        duration: "Half Day",
+        price: "₹15,000",
+        description: "Bespoke Hair Design & Trial\nSignature Royal Shave Ritual\nRejuvenating Deep Tissue Massage\nComplete Hand & Foot Grooming\nPremium Skincare Regimen",
+        image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800",
+      },
+      {
+        title: "The Complete Wedding Package",
+        duration: "2 Days",
+        price: "₹45,000",
+        description: "Bride: Full Bridal Makeup & Styling\nBride: Pre-wedding Facial & Cleanup\nBride: Mehndi & Sangeet Look\nGroom: Hair Styling & Beard Grooming\nGroom: Facial & Skin Treatment\nGroom: Manicure & Pedicure\nBoth: Touch-ups on Wedding Day",
+        image: "https://images.unsplash.com/photo-1583939008298-639a04f298c4?auto=format&fit=crop&q=80&w=800",
+      },
+      {
+        title: "The Wedding Essential",
+        duration: "3 Hours",
+        price: "₹8,000",
+        description: "Basic Bridal/Groom Makeup\nHair Styling\nExpress Facial\nBasic Manicure",
+        image: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800",
       },
     ],
   },
   portfolio: {
-    categories: ["All", "Hair", "Beard", "Bridal"],
-    images: [
-      {
-        id: "img1",
-        url: "https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?auto=format&fit=crop&q=80&w=800",
-        category: "Bridal",
-        title: "Classic Groom Look",
-      },
-      {
-        id: "img2",
-        url: "https://images.unsplash.com/photo-1622288432450-277d0fce5b15?auto=format&fit=crop&q=80&w=800",
-        category: "Hair",
-        title: "Modern Fade",
-      },
-      {
-        id: "img3",
-        url: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800",
-        category: "Beard",
-        title: "Precision Trim",
-      },
+    categories: ["All", "Hair", "Beard", "Bridal", "Makeup"],
+    items: [
+      { title: "Classic Groom Look", category: "Bridal", image: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" },
+      { title: "Modern Fade", category: "Hair", image: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80&w=800" },
+      { title: "Precision Trim", category: "Beard", image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=800" },
+      { title: "Bridal Glamour", category: "Bridal", image: "https://images.unsplash.com/photo-1595959183082-7b570b7e08e2?auto=format&fit=crop&q=80&w=800" },
+      { title: "Party Makeup Look", category: "Makeup", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&q=80&w=800" },
+      { title: "Elegant Waves", category: "Hair", image: "https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&q=80&w=800" },
+      { title: "Subtle Balayage", category: "Hair", image: "https://images.unsplash.com/photo-1600948836101-f9ff166cc379?auto=format&fit=crop&q=80&w=800" },
+      { title: "Sharp Styling", category: "Beard", image: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&q=80&w=800" },
     ],
   },
   contact: {
     heroText: "Get in Touch",
-    mapPlaceholderUrl: "https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1200",
+    address: "123 Heritage Lane, Old Delhi, India 110006",
+    phone: "+91 8920784349",
+    email: "concierge@lelegance.com",
+    hours: {
+      weekday: "10:00 AM - 8:00 PM",
+      saturday: "9:00 AM - 9:00 PM",
+      sunday: "11:00 AM - 6:00 PM",
+    },
   },
 };

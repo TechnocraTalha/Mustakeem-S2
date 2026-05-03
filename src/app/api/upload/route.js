@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import { v2 as cloudinary } from "cloudinary";
 
+console.log("CLOUDINARY CONFIG CHECK:", {
+  name: process.env.CLOUDINARY_CLOUD_NAME ? "YES" : "NO",
+  key: process.env.CLOUDINARY_API_KEY ? "YES" : "NO",
+  secret: process.env.CLOUDINARY_API_SECRET ? "YES" : "NO",
+});
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -21,10 +27,14 @@ export async function POST(request) {
 
     const result = await new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
-        { folder: "mustakeem_salon" },
+        { folder: "mustakeem_salon", resource_type: "auto" },
         (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
+          if (error) {
+            console.error("Cloudinary SDK Error:", error);
+            reject(error);
+          } else {
+            resolve(result);
+          }
         }
       );
       uploadStream.end(buffer);
@@ -32,7 +42,7 @@ export async function POST(request) {
 
     return NextResponse.json({ url: result.secure_url }, { status: 200 });
   } catch (error) {
-    console.error("Upload error:", error);
-    return NextResponse.json({ error: "Upload failed." }, { status: 500 });
+    console.error("Upload route error:", error);
+    return NextResponse.json({ error: error.message || "Upload failed." }, { status: 500 });
   }
 }

@@ -14,28 +14,57 @@ export default function ImageUploader({ onUploadSuccess }) {
     setUploading(true);
     setError(null);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          let width = img.width;
+          let height = img.height;
 
-      if (!response.ok) {
-        throw new Error("Upload failed");
-      }
+          // Max dimensions
+          const MAX_WIDTH = 800;
+          const MAX_HEIGHT = 800;
 
-      const data = await response.json();
-      if (data.url && onUploadSuccess) {
-        onUploadSuccess(data.url);
-      }
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Compress to WebP (highly efficient, usually <100kb for 800px)
+          const dataUrl = canvas.toDataURL("image/webp", 0.8);
+          
+          if (onUploadSuccess) {
+            onUploadSuccess(dataUrl);
+          }
+          setUploading(false);
+        };
+      };
+      reader.onerror = (error) => {
+        console.error("Error reading file:", error);
+        setError("Failed to read image.");
+        setUploading(false);
+      };
     } catch (err) {
       console.error(err);
-      setError("Failed to upload image. Please try again.");
-    } finally {
+      setError("Failed to process image.");
       setUploading(false);
+    } finally {
       // Reset input
       e.target.value = null;
     }
@@ -44,7 +73,7 @@ export default function ImageUploader({ onUploadSuccess }) {
   return (
     <div className={styles.uploader}>
       <label className={styles.label}>
-        {uploading ? "Uploading..." : "Upload Image"}
+        {uploading ? "Processing..." : "Upload Image"}
         <input
           type="file"
           accept="image/*"

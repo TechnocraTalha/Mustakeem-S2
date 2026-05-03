@@ -1,12 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { submitContactMessage } from "@/lib/firestore";
+import { ExpandMoreIcon } from "@/components/Icons";
+import { getSiteConfig } from "@/lib/firestore";
+import { fallbackData } from "@/lib/data";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", phone: "", service: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [config, setConfig] = useState(fallbackData.contact);
+
+  useEffect(() => {
+    getSiteConfig("contact").then(data => { if (data) setConfig(data); });
+  }, []);
 
   const handleChange = (e) => setFormData({ ...formData, [e.target.id]: e.target.value });
 
@@ -58,15 +66,15 @@ export default function Contact() {
           <div className="glass-panel p-8 flex flex-col gap-8 h-full">
             <div>
               <h3 className="font-label-caps text-label-caps text-outline mb-2">Location</h3>
-              <p className="font-body-md text-body-md text-on-surface">123 Heritage Lane, Old Delhi<br />India 110006</p>
+              <p className="font-body-md text-body-md text-on-surface whitespace-pre-line">{config.address}</p>
             </div>
             <div>
               <h3 className="font-label-caps text-label-caps text-outline mb-2">Direct Line</h3>
-              <p className="font-body-md text-body-md text-on-surface">+91 98765 43210</p>
+              <p className="font-body-md text-body-md text-on-surface">{config.phone}</p>
             </div>
             <div>
               <h3 className="font-label-caps text-label-caps text-outline mb-2">Digital Correspondence</h3>
-              <p className="font-body-md text-body-md text-on-surface">concierge@lelegance.com</p>
+              <p className="font-body-md text-body-md text-on-surface">{config.email}</p>
             </div>
           </div>
           {/* Operational Hours */}
@@ -75,15 +83,15 @@ export default function Contact() {
             <div className="flex flex-col gap-4">
               <div className="flex justify-between items-center border-b border-outline-variant pb-2">
                 <span className="font-body-md text-body-md text-on-surface-variant">Monday - Friday</span>
-                <span className="font-body-md text-body-md text-on-surface">10:00 AM - 8:00 PM</span>
+                <span className="font-body-md text-body-md text-on-surface">{config.hours?.weekday}</span>
               </div>
               <div className="flex justify-between items-center border-b border-outline-variant pb-2">
                 <span className="font-body-md text-body-md text-on-surface-variant">Saturday</span>
-                <span className="font-body-md text-body-md text-on-surface">9:00 AM - 9:00 PM</span>
+                <span className="font-body-md text-body-md text-on-surface">{config.hours?.saturday}</span>
               </div>
               <div className="flex justify-between items-center border-b border-outline-variant pb-2">
                 <span className="font-body-md text-body-md text-on-surface-variant">Sunday</span>
-                <span className="font-body-md text-body-md text-on-surface">11:00 AM - 6:00 PM</span>
+                <span className="font-body-md text-body-md text-on-surface">{config.hours?.sunday}</span>
               </div>
             </div>
           </div>
@@ -111,7 +119,7 @@ export default function Contact() {
                 <option value="Rejuvenating Treatments">Rejuvenating Treatments</option>
                 <option value="Other Inquiry">Other Inquiry</option>
               </select>
-              <span className="material-symbols-outlined absolute right-0 bottom-2 text-outline pointer-events-none" style={{ fontVariationSettings: "'FILL' 0" }}>expand_more</span>
+              <ExpandMoreIcon className="w-5 h-5 absolute right-0 bottom-2 text-outline pointer-events-none" />
             </div>
             <div className="flex flex-col relative">
               <label className="font-label-caps text-label-caps text-outline mb-2" htmlFor="message">Message</label>

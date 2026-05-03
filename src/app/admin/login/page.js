@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { MailIcon, LockIcon, ArrowForwardIcon, InfoIcon } from "@/components/Icons";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("talhasiddiqui240@gmail.com");
@@ -66,9 +67,7 @@ export default function AdminLogin() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                <span className="material-symbols-outlined absolute right-0 text-outline-variant group-focus-within:text-secondary-fixed-dim transition-colors pointer-events-none text-[20px]">
-                  mail
-                </span>
+                <MailIcon className="w-5 h-5 absolute right-0 text-outline-variant group-focus-within:text-secondary-fixed-dim transition-colors pointer-events-none" />
               </div>
             </div>
             
@@ -86,9 +85,7 @@ export default function AdminLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                <span className="material-symbols-outlined absolute right-0 text-outline-variant group-focus-within:text-secondary-fixed-dim transition-colors pointer-events-none text-[20px]">
-                  lock
-                </span>
+                <LockIcon className="w-5 h-5 absolute right-0 text-outline-variant group-focus-within:text-secondary-fixed-dim transition-colors pointer-events-none" />
               </div>
             </div>
             
@@ -101,11 +98,11 @@ export default function AdminLogin() {
                 type="submit"
               >
                 <span>Login</span>
-                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                <ArrowForwardIcon className="w-[18px] h-[18px]" />
               </button>
               
               <div className="flex items-start gap-3 bg-surface-container-low p-4 rounded-sm border border-outline-variant/20">
-                <span className="material-symbols-outlined text-outline text-[16px] mt-0.5">info</span>
+                <InfoIcon className="w-4 h-4 text-outline mt-0.5 flex-shrink-0" />
                 <p className="font-body-md text-body-md text-outline text-sm leading-relaxed">
                   Access restricted to authorized personnel only. All login attempts are logged and monitored.
                 </p>

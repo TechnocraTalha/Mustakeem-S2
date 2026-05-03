@@ -1,52 +1,69 @@
 import { getSiteConfig } from "@/lib/firestore";
+import { ArrowDownwardIcon, ArrowForwardIcon } from "@/components/Icons";
 
-export const revalidate = 60; // ISR every 60 seconds
+export const dynamic = 'force-dynamic';
 
 export default async function Bridal() {
   const config = await getSiteConfig("bridal");
   const packages = config?.items || [
     {
-      title: "The Wedding Essential",
-      duration: "2.5 Hours",
-      price: "$350",
-      description: "Precision Haircut & Styling\nTraditional Hot Towel Wet Shave\nExpress Facial Treatment\nManicure & Hand Detailing",
+      title: "The Radiant Bride",
+      duration: "Full Day",
+      price: "₹25,000",
+      description: "Bridal Trial Makeup Session\nHD/Airbrush Bridal Makeup\nHair Styling & Setting\nDraping Assistance\nMehndi Day Makeup\nPre-wedding Skincare Facial\nManicure & Pedicure",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuARUmLfyeisjEyXHfvF8KZ4If_zJRAZ-B6INeN_qrOwgAAJQDB-LcHuuJ83I5qEnLcSEXEj2ggvJpoVEqquKN6MsITRlzRM3kXXuBcNOJ-sbUqM52k8y_qEQcJosnjDDEZSm5cSgWr1WV83wofjbykY-Cwd5oRfYmG6qo1HxMQASMo6SfgPPjP3_koJYpjwDl5XGW6WSUa8VZJeUlvyNUt4y17lZSORJdPCGyimlrxHNLqQ1LU_-UB-Zw6PZOifXegIDq-Eb02-Z28"
     },
     {
-      title: "The Maharaja Package",
+      title: "The Royal Groom",
       duration: "Half Day",
-      price: "$750",
+      price: "₹15,000",
       description: "Bespoke Hair Design & Trial\nSignature Royal Shave Ritual\nRejuvenating Deep Tissue Massage\nComplete Hand & Foot Grooming\nPremium Skincare Regimen",
       image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCfnRNwGbmxeinKrGjDqHrQbuEGPzt6yqo3UTSVesD7gQyn4nkofRl2Mal7AxQzELkphidEkeDm9iTsG60w1_PF3P4S-ez1Ul5DfjsjSm6mq_eLjIt_LSEA63YO5ajmYZmPh3Hb7PT_yV_E0WMWngoIGo0uvzl88bi6TelrQszbtk8js91o_v0S0IqxuIV1j7KEWpbx3v7d3nmZWmQuHsRHaJ3vv0dGwNwz4IyYVnTAnrl06i8FpuuZcTuEFEMckj_IzSGpkziCnE0"
+    },
+    {
+      title: "The Complete Wedding Package",
+      duration: "2 Days",
+      price: "₹45,000",
+      description: "Bride: Full Bridal Makeup & Styling\nBride: Pre-wedding Facial & Cleanup\nBride: Mehndi & Sangeet Look\nGroom: Hair Styling & Beard Grooming\nGroom: Facial & Skin Treatment\nGroom: Manicure & Pedicure\nBoth: Touch-ups on Wedding Day",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDoEybW8jLOXBCmtVkbgA1kv-lOjYDyMwHV9_VG3u5kThWLXC-9-ythXrst7hAnFkN-hZw8BKXJC3rmDIvCk2vrLHOensJw1UbfPGfo-mXPDAfLQzlbMivxWuhYy8YdQghFSeF0j_zy0TeaYvn8DAM3ieZxImjLGS8QG87j2WnVtFRteN_IfHq-5uoK5iQX_JpjzC_fYYEziTUHrlKPJlv2WA_mkv4vuKCLNB05iRAmTts5Dz_OTYZTBdkEXUOJic-rrxyMsjrlM18"
+    },
+    {
+      title: "The Wedding Essential",
+      duration: "3 Hours",
+      price: "₹8,000",
+      description: "Basic Bridal/Groom Makeup\nHair Styling\nExpress Facial\nBasic Manicure",
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuByhMyDCzXZJjInMvtAVEUAAHpHvNNmDB48rBPb3zm9-NCdbmGLsWcOCHuhzy5oTAdSLm9nGVginwAMKa_iFt2RU5n_UCxyPuzNasG_UbhKCJGUZH7EIO1H6EK6DWn0aCfw0079lKxlIOEMGTre7bT5Wf1fa76_w-3wQmXLJ_7Y706Pkfr3wqOzctKveE107nV2aKYS38HOT5hPPfoIduKT0WOLUadEB98SlzFpzVm2AFK5clzHMW1Pz3l0hfP3QF0eSr6uExwAfac"
     }
   ];
 
   return (
     <>
+      {/* Hero */}
       <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 md:py-32 grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
         <div className="md:col-span-5 flex flex-col items-start gap-8 z-10">
-          <span className="font-label-caps text-label-caps text-outline uppercase tracking-[0.2em]">Royal Wedding Styling</span>
+          <span className="font-label-caps text-label-caps text-outline uppercase tracking-[0.2em]">Wedding Styling</span>
           <h1 className="font-display-lg text-display-lg text-on-background">The Royal<br />Treatment.</h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md">
-            Prepare for your most important day with our meticulous styling services designed for the modern individual. A sanctuary of calm before the celebration.
+            Prepare for your most important day with our meticulous styling services. Curated packages for both the bride and groom — because both deserve to shine.
           </p>
           <div className="pt-4">
             <a className="inline-flex items-center gap-3 font-button text-button uppercase bg-primary text-on-primary px-8 py-4 hover:bg-surface-tint transition-colors duration-500" href="#packages">
               View Packages
-              <span className="material-symbols-outlined text-sm">arrow_downward</span>
+              <ArrowDownwardIcon className="w-4 h-4" />
             </a>
           </div>
         </div>
         <div className="md:col-span-7 relative w-full aspect-[4/5] md:aspect-[16/10] overflow-hidden">
-          <img alt="A client receiving premium styling in a high-end, minimalist salon." className="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-[2000ms] hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoEybW8jLOXBCmtVkbgA1kv-lOjYDyMwHV9_VG3u5kThWLXC-9-ythXrst7hAnFkN-hZw8BKXJC3rmDIvCk2vrLHOensJw1UbfPGfo-mXPDAfLQzlbMivxWuhYy8YdQghFSeF0j_zy0TeaYvn8DAM3ieZxImjLGS8QG87j2WnVtFRteN_IfHq-5uoK5iQX_JpjzC_fYYEziTUHrlKPJlv2WA_mkv4vuKCLNB05iRAmTts5Dz_OTYZTBdkEXUOJic-rrxyMsjrlM18" />
+          <img alt="Wedding styling" className="w-full h-full object-cover object-center absolute inset-0 transition-transform duration-[2000ms] hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoEybW8jLOXBCmtVkbgA1kv-lOjYDyMwHV9_VG3u5kThWLXC-9-ythXrst7hAnFkN-hZw8BKXJC3rmDIvCk2vrLHOensJw1UbfPGfo-mXPDAfLQzlbMivxWuhYy8YdQghFSeF0j_zy0TeaYvn8DAM3ieZxImjLGS8QG87j2WnVtFRteN_IfHq-5uoK5iQX_JpjzC_fYYEziTUHrlKPJlv2WA_mkv4vuKCLNB05iRAmTts5Dz_OTYZTBdkEXUOJic-rrxyMsjrlM18" />
         </div>
       </section>
 
+      {/* Packages */}
       <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap" id="packages">
-        <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-outline-variant pb-8">
+        <div className="mb-16 flex flex-col md:flex-row justify-between items-end gap-8 border-b border-outline-variant pb-8">
           <div>
-            <h2 className="font-headline-lg text-headline-lg text-on-background mb-4">Curated Experiences</h2>
-            <p className="font-body-md text-body-md text-on-surface-variant max-w-lg">Tailored grooming rituals designed to ensure impeccable presentation and profound relaxation prior to your ceremony.</p>
+            <h2 className="font-headline-lg text-headline-lg text-on-background mb-4">Curated Wedding Packages</h2>
+            <p className="font-body-md text-body-md text-on-surface-variant max-w-lg">Comprehensive packages for the bride, groom, or both — tailored for your special day with premium products and expert stylists.</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
@@ -79,24 +96,25 @@ export default async function Bridal() {
         </div>
       </section>
 
+      {/* Consultation CTA */}
       <section className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-section-gap mb-section-gap">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
           <div className="md:col-span-6 relative h-[600px] w-full">
             <div className="absolute inset-0 bg-surface-container-high w-[80%] h-[90%] left-0 top-0"></div>
-            <img alt="Groom consultation area" className="absolute right-0 bottom-0 w-[85%] h-[90%] object-cover shadow-[0_20px_60px_rgba(0,0,0,0.05)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByhMyDCzXZJjInMvtAVEUAAHpHvNNmDB48rBPb3zm9-NCdbmGLsWcOCHuhzy5oTAdSLm9nGVginwAMKa_iFt2RU5n_UCxyPuzNasG_UbhKCJGUZH7EIO1H6EK6DWn0aCfw0079lKxlIOEMGTre7bT5Wf1fa76_w-3wQmXLJ_7Y706Pkfr3wqOzctKveE107nV2aKYS38HOT5hPPfoIduKT0WOLUadEB98SlzFpzVm2AFK5clzHMW1Pz3l0hfP3QF0eSr6uExwAfac" />
+            <img alt="Consultation area" className="absolute right-0 bottom-0 w-[85%] h-[90%] object-cover shadow-[0_20px_60px_rgba(0,0,0,0.05)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByhMyDCzXZJjInMvtAVEUAAHpHvNNmDB48rBPb3zm9-NCdbmGLsWcOCHuhzy5oTAdSLm9nGVginwAMKa_iFt2RU5n_UCxyPuzNasG_UbhKCJGUZH7EIO1H6EK6DWn0aCfw0079lKxlIOEMGTre7bT5Wf1fa76_w-3wQmXLJ_7Y706Pkfr3wqOzctKveE107nV2aKYS38HOT5hPPfoIduKT0WOLUadEB98SlzFpzVm2AFK5clzHMW1Pz3l0hfP3QF0eSr6uExwAfac" />
           </div>
           <div className="md:col-span-5 md:col-start-8 flex flex-col items-start pt-12 md:pt-0">
             <span className="font-label-caps text-label-caps text-outline uppercase tracking-[0.2em] mb-4">The Process</span>
             <h2 className="font-headline-lg text-headline-lg text-on-background mb-8">Bespoke Private Consultation.</h2>
             <p className="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
-              Every individual's aesthetic is distinct. Our process begins with an uninterrupted, private consultation where our master stylists assess your style, skin type, and specific requirements for the wedding day.
+              Every wedding is unique. Our process begins with an uninterrupted, private consultation where our expert stylists understand your vision, skin type, and specific requirements for the big day.
             </p>
             <p className="font-body-md text-body-md text-on-surface-variant mb-12 leading-relaxed">
-              We believe true luxury lies in the details. From selecting the perfect scent profile for your hot towel to establishing a pre-wedding skincare timeline, nothing is left to chance.
+              From trial makeup sessions to pre-wedding skincare routines, we ensure every detail is planned and perfected — for both the bride and groom.
             </p>
             <a className="inline-flex items-center gap-2 font-button text-button uppercase text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors duration-300" href="/contact#inquiry">
               Schedule a Consultation
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              <ArrowForwardIcon className="w-4 h-4" />
             </a>
           </div>
         </div>

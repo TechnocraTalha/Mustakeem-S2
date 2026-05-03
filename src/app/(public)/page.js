@@ -1,18 +1,39 @@
-export default function Home() {
+import { getSiteConfig } from "@/lib/firestore";
+import { ArrowForwardIcon } from "@/components/Icons";
+
+export const dynamic = 'force-dynamic';
+
+
+
+export default async function Home() {
+  const homeData = await getSiteConfig("home");
+  const hero = homeData?.hero || {};
+  const featuredServices = homeData?.featuredServices || [];
+
+  const heroTitle = hero.title || "Mustakeem Handsome Salon — Redefining Unisex Sophistication";
+  const heroSubtitle = hero.subtitle || "Experience the pinnacle of grooming where tradition meets contemporary refinement.";
+  const heroImage = hero.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuB5hzIdBG-XrN87MPvWH4REZ-x2MtbIp9waML9PAV7BY8I2ZF1Q6aBoPr0VnhwtLbAR-ZWkmUKC70eywM0DRaRhdwIA75uYNSpe1u1vd9ZuhcLT-iuWag6CaRPx_pQzZiRoFRZzfBlExXegT9gAGQUxYApFrOzvNz-P6wgDF1-D6-YDXKVPZwz6ZBz2qIW1-L91zrR8-8b4W9njm69i4Tiem4CW57PDvn9c_KBTZXfJH3ZYGFeUw23sgJ63zIBf7vxDlhChU_yDWw4";
+
+  const services = featuredServices.length > 0 ? featuredServices : [
+    { name: "The Executive Cut", description: "Precision styling & scalp massage.", price: "$85", imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAXfUJ3Jj0239Nllq3LGQba13YRlwAyI3XYY1bb39i77ZKMasmgJ8ngoabKb0n-oKNiBLzzHCUrSsA7yL13EuT8-Oyy31uAyXhhkZMhtPV2XHF4ZK5Un5zN2eFVFdc44sZiek4yREzKeo6Gvpgo5pCRN7kmDKwPunBlSnkqR74YkWR2fL0UVT2IQKd6pqArEH279wNy9g5ObHa6Tk3FRepHSJ4rS21hYbNAbvxbRRuwuBgqpntK9ddAoCXwsA3XWRr-yNQYG0yEIrQ" },
+    { name: "The Royal Shave", description: "Hot towel, straight razor, soothing oils.", price: "$65", imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCufmKyCFjVkw0IDj0r4CwCz3o5fpZQnAodusJ17byRSHd2W4reOwgWZZ22c31yYz5bxptuHK0RdriI8Lh5FPHrRDZHs-xBkyYSXSX5yHzZhjJxCwbWow7a7GG08vImRq48qh5mxJuafhGlDF_b_tUaBQKMqoqWu-CxS52-Yr4Zl6aMSX7gl8TQLQRcWnSwpXbVxr6nb9spfLd8j4GptmTBoyJqD_zXJS_9-2sG8r2pgbNlLBFNshBBgNsOiE71r-IWAvp0RA9y_AQ" },
+    { name: "Advanced Skin Therapy", description: "Deep cleanse & rejuvenating facial.", price: "$120", imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCBvzOYPvwxBslRCShRjEW2Vrj0X_Lw_4-RBi78Co2C4PD9rfB9dOOBCz8ihrY8tMJ-rVdw4B7-UKRy9kZavBoMIhOLMHSZhEYV8M4bGFimIGHIojn_UVg9o1GQ8fa7YquSaekjkQgYa-wwRS2puUDupRuMu6jp4kRAhZIr6zhBxDrv2L5zSuG0TEUyEe76nXzhu2EBLyF-h1cy_eohANogEfyNwq218385lOXN-Gp4tM1yh-GZ0D7mqI34HK7Koxmybm51pOfQq_g" }
+  ];
+
   return (
     <>
       {/* Hero Section */}
       <section className="relative h-[921px] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img alt="Hero Background" className="w-full h-full object-cover object-center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5hzIdBG-XrN87MPvWH4REZ-x2MtbIp9waML9PAV7BY8I2ZF1Q6aBoPr0VnhwtLbAR-ZWkmUKC70eywM0DRaRhdwIA75uYNSpe1u1vd9ZuhcLT-iuWag6CaRPx_pQzZiRoFRZzfBlExXegT9gAGQUxYApFrOzvNz-P6wgDF1-D6-YDXKVPZwz6ZBz2qIW1-L91zrR8-8b4W9njm69i4Tiem4CW57PDvn9c_KBTZXfJH3ZYGFeUw23sgJ63zIBf7vxDlhChU_yDWw4"/>
+          <img alt="Hero Background" className="w-full h-full object-cover object-center" src={heroImage}/>
           <div className="absolute inset-0 bg-black/40 z-10"></div>
         </div>
         <div className="relative z-20 text-center px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col items-center">
           <h1 className="font-display-lg text-display-lg text-on-primary mb-8 max-w-4xl mx-auto drop-shadow-md">
-            L'ÉLÉGANCE - Redefining Unisex Sophistication
+            {heroTitle}
           </h1>
           <p className="font-body-lg text-body-lg text-on-primary/80 mb-12 max-w-2xl mx-auto">
-            Experience the pinnacle of grooming where tradition meets contemporary refinement.
+            {heroSubtitle}
           </p>
           <a href="/contact#inquiry" className="inline-block font-button text-button uppercase bg-primary text-on-primary px-10 py-4 hover:bg-primary/90 transition-colors duration-300 rounded-none tracking-widest">
             Book Now
@@ -43,48 +64,21 @@ export default function Home() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-            {/* Service 1 */}
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden aspect-[3/4] mb-6">
-                <img alt="The Executive Cut" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXfUJ3Jj0239Nllq3LGQba13YRlwAyI3XYY1bb39i77ZKMasmgJ8ngoabKb0n-oKNiBLzzHCUrSsA7yL13EuT8-Oyy31uAyXhhkZMhtPV2XHF4ZK5Un5zN2eFVFdc44sZiek4yREzKeo6Gvpgo5pCRN7kmDKwPunBlSnkqR74YkWR2fL0UVT2IQKd6pqArEH279wNy9g5ObHa6Tk3FRepHSJ4rS21hYbNAbvxbRRuwuBgqpntK9ddAoCXwsA3XWRr-yNQYG0yEIrQ"/>
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
-              </div>
-              <div className="flex justify-between items-start pt-2 border-t border-outline-variant/30 group-hover:border-primary transition-colors duration-300">
-                <div>
-                  <h3 className="font-headline-md text-headline-md text-on-surface text-xl mb-2">The Executive Cut</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant text-sm">Precision styling & scalp massage.</p>
+            {services.map((service, i) => (
+              <div key={i} className={`group cursor-pointer ${i === 1 ? 'pt-0 md:pt-12' : ''}`}>
+                <div className="relative overflow-hidden aspect-[3/4] mb-6">
+                  <img alt={service.name} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src={service.imageUrl} />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
                 </div>
-                <span className="font-label-caps text-label-caps text-on-surface mt-2">$85</span>
-              </div>
-            </div>
-            {/* Service 2 */}
-            <div className="group cursor-pointer pt-0 md:pt-12">
-              <div className="relative overflow-hidden aspect-[3/4] mb-6">
-                <img alt="The Royal Shave" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCufmKyCFjVkw0IDj0r4CwCz3o5fpZQnAodusJ17byRSHd2W4reOwgWZZ22c31yYz5bxptuHK0RdriI8Lh5FPHrRDZHs-xBkyYSXSX5yHzZhjJxCwbWow7a7GG08vImRq48qh5mxJuafhGlDF_b_tUaBQKMqoqWu-CxS52-Yr4Zl6aMSX7gl8TQLQRcWnSwpXbVxr6nb9spfLd8j4GptmTBoyJqD_zXJS_9-2sG8r2pgbNlLBFNshBBgNsOiE71r-IWAvp0RA9y_AQ"/>
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
-              </div>
-              <div className="flex justify-between items-start pt-2 border-t border-outline-variant/30 group-hover:border-primary transition-colors duration-300">
-                <div>
-                  <h3 className="font-headline-md text-headline-md text-on-surface text-xl mb-2">The Royal Shave</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant text-sm">Hot towel, straight razor, soothing oils.</p>
+                <div className="flex justify-between items-start pt-2 border-t border-outline-variant/30 group-hover:border-primary transition-colors duration-300">
+                  <div>
+                    <h3 className="font-headline-md text-headline-md text-on-surface text-xl mb-2">{service.name}</h3>
+                    <p className="font-body-md text-body-md text-on-surface-variant text-sm">{service.description}</p>
+                  </div>
+                  <span className="font-label-caps text-label-caps text-on-surface mt-2">{service.price}</span>
                 </div>
-                <span className="font-label-caps text-label-caps text-on-surface mt-2">$65</span>
               </div>
-            </div>
-            {/* Service 3 */}
-            <div className="group cursor-pointer">
-              <div className="relative overflow-hidden aspect-[3/4] mb-6">
-                <img alt="Advanced Skin Therapy" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBvzOYPvwxBslRCShRjEW2Vrj0X_Lw_4-RBi78Co2C4PD9rfB9dOOBCz8ihrY8tMJ-rVdw4B7-UKRy9kZavBoMIhOLMHSZhEYV8M4bGFimIGHIojn_UVg9o1GQ8fa7YquSaekjkQgYa-wwRS2puUDupRuMu6jp4kRAhZIr6zhBxDrv2L5zSuG0TEUyEe76nXzhu2EBLyF-h1cy_eohANogEfyNwq218385lOXN-Gp4tM1yh-GZ0D7mqI34HK7Koxmybm51pOfQq_g"/>
-                <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
-              </div>
-              <div className="flex justify-between items-start pt-2 border-t border-outline-variant/30 group-hover:border-primary transition-colors duration-300">
-                <div>
-                  <h3 className="font-headline-md text-headline-md text-on-surface text-xl mb-2">Advanced Skin Therapy</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant text-sm">Deep cleanse & rejuvenating facial.</p>
-                </div>
-                <span className="font-label-caps text-label-caps text-on-surface mt-2">$120</span>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -100,7 +94,7 @@ export default function Home() {
             <div className="relative z-10 text-center flex flex-col items-center">
               <h3 className="font-headline-md text-headline-md text-on-surface mb-4">View All Services</h3>
               <span className="font-button text-button text-on-surface flex items-center gap-2 group-hover:gap-4 transition-all duration-300">
-                Explore <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                Explore <ArrowForwardIcon className="w-4 h-4" />
               </span>
             </div>
           </a>
