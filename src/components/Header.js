@@ -47,7 +47,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link href="/contact#inquiry" className="hidden md:block font-button text-button uppercase text-primary border border-primary px-6 py-3 hover:bg-primary hover:text-on-primary transition-colors duration-300 rounded-none">
+          <Link href="/booking" className="hidden md:block font-button text-button uppercase text-primary border border-primary px-6 py-3 hover:bg-primary hover:text-on-primary transition-colors duration-300 rounded-none">
             Book Appointment
           </Link>
           <a href="https://wa.me/918920784349" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex items-center justify-center border border-zinc-300 dark:border-zinc-700 rounded-sm px-3 py-2 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all duration-300">
@@ -85,7 +85,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/contact#inquiry" onClick={() => setMobileOpen(false)} className="mt-4 text-center font-button text-button uppercase text-primary border border-primary px-6 py-3 hover:bg-primary hover:text-on-primary transition-colors duration-300">
+            <Link href="/booking" onClick={() => setMobileOpen(false)} className="mt-4 text-center font-button text-button uppercase text-primary border border-primary px-6 py-3 hover:bg-primary hover:text-on-primary transition-colors duration-300">
               Book Appointment
             </Link>
           </nav>

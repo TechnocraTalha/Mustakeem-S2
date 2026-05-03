@@ -9,6 +9,7 @@ import PortfolioEditor from "@/components/admin/PortfolioEditor";
 import ContactEditor from "@/components/admin/ContactEditor";
 import GeneralEditor from "@/components/admin/GeneralEditor";
 import InboxTab from "@/components/admin/InboxTab";
+import AppointmentsTab from "@/components/admin/AppointmentsTab";
 import {
   HomeIcon,
   EditDocumentIcon,
@@ -20,12 +21,19 @@ import {
   LogoutIcon,
 } from "@/components/Icons";
 
+const CalendarIcon = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
+    <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/>
+  </svg>
+);
+
 const TABS = [
   { id: "home", label: "Home Page", icon: HomeIcon },
   { id: "services", label: "Services", icon: EditDocumentIcon },
   { id: "bridal", label: "Bridal & Groom", icon: DiamondIcon },
   { id: "portfolio", label: "Portfolio", icon: CollectionsIcon },
   { id: "contact", label: "Contact Info", icon: ContactIcon },
+  { id: "appointments", label: "Appointments", icon: CalendarIcon },
   { id: "general", label: "General", icon: SettingsIcon },
   { id: "inbox", label: "Inbox", icon: InboxIcon },
 ];
@@ -143,6 +151,7 @@ export default function AdminDashboard() {
             {activeTab === "bridal" && "Configure your bridal and groom packages with pricing and features."}
             {activeTab === "portfolio" && "Manage your portfolio gallery — showcase your best work to potential clients."}
             {activeTab === "contact" && "Update your contact information, address, and operational hours."}
+            {activeTab === "appointments" && "Manage customer bookings and professional schedules."}
             {activeTab === "general" && "Configure site-wide settings like salon name, phone, WhatsApp, and social links."}
             {activeTab === "inbox" && "View and manage client inquiries submitted through the contact form."}
           </p>
@@ -154,6 +163,7 @@ export default function AdminDashboard() {
         {activeTab === "bridal" && <BridalEditor />}
         {activeTab === "portfolio" && <PortfolioEditor />}
         {activeTab === "contact" && <ContactEditor />}
+        {activeTab === "appointments" && <AppointmentsTab />}
         {activeTab === "general" && <GeneralEditor />}
         {activeTab === "inbox" && <InboxTab />}
       </main>

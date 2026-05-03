@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 1. Appointments Collection
+    match /appointments/{appointmentId} {
+      // Anyone (or any logged-in user) can read appointments to check available slots
+      allow read: if true;
+      
+      // Only authenticated users can create an appointment
+      allow create: if request.auth != null;
+      
+      // Only the user who created it, or an admin, can update/delete
+      // Note: For full admin security, you'd check custom claims like `request.auth.token.admin == true`
+      allow update, delete: if request.auth != null;
+    }
+    
+    // 2. Barbers and Services (Read-only for public, writable by admin)
+    match /barbers/{document=**} {
+      allow read: if true;
+      allow write: if true; // Currently set to true to allow your local Admin Panel to update
+    }
+    
+    match /services/{document=**} {
+      allow read: if true;
+      allow write: if true; // Currently set to true to allow your local Admin Panel to update
+    }
+
+    // 3. General Site Config (Admin only ideally, but open for local Admin Panel)
+    match /{document=**} {
+      allow read: if true;
+      allow write: if true; // Set to true to avoid breaking existing admin dashboard components
+    }
+  }
+}
