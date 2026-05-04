@@ -20,12 +20,12 @@ export const fallbackData = {
     hero: {
       title: "Mustakeem Handsome Salon — Redefining Unisex Sophistication",
       subtitle: "Experience the pinnacle of grooming where tradition meets contemporary refinement. Premium services for men & women.",
-      imageUrl: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=2000",
+      imageUrl: "/images/hero.png",
     },
     featuredServices: [
-      { name: "Signature Haircut", description: "Bespoke styling tailored to your profile.", price: "₹500", imageUrl: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&q=80&w=800" },
-      { name: "Royal Beard Grooming", description: "Precision trimming and hot towel shave.", price: "₹300", imageUrl: "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80&w=800" },
-      { name: "Luxury Facial", description: "Deep cleansing and skin rejuvenation for all skin types.", price: "₹800", imageUrl: "https://images.unsplash.com/photo-1570172619644-defd82cbfa6f?auto=format&fit=crop&q=80&w=800" },
+      { name: "Premium Haircut", description: "Bespoke styling tailored to your profile.", price: "₹500", imageUrl: "/images/haircut.png" },
+      { name: "Signature Shave", description: "Precision trimming and hot towel shave.", price: "₹300", imageUrl: "/images/shave.png" },
+      { name: "Grooming Package", description: "Haircut, shave, facial, styling.", price: "₹800", imageUrl: "/images/haircut.png" },
     ],
   },
   services: {

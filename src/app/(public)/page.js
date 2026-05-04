@@ -12,12 +12,13 @@ export default async function Home() {
 
   const heroTitle = hero.title || "Mustakeem Handsome Salon — Redefining Unisex Sophistication";
   const heroSubtitle = hero.subtitle || "Experience the pinnacle of grooming where tradition meets contemporary refinement.";
-  const heroImage = hero.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuB5hzIdBG-XrN87MPvWH4REZ-x2MtbIp9waML9PAV7BY8I2ZF1Q6aBoPr0VnhwtLbAR-ZWkmUKC70eywM0DRaRhdwIA75uYNSpe1u1vd9ZuhcLT-iuWag6CaRPx_pQzZiRoFRZzfBlExXegT9gAGQUxYApFrOzvNz-P6wgDF1-D6-YDXKVPZwz6ZBz2qIW1-L91zrR8-8b4W9njm69i4Tiem4CW57PDvn9c_KBTZXfJH3ZYGFeUw23sgJ63zIBf7vxDlhChU_yDWw4";
+  const heroImage = "/images/hero.png"; // Enforce local high-def image
 
-  const services = featuredServices.length > 0 ? featuredServices : [
-    { name: "The Executive Cut", description: "Precision styling & scalp massage.", price: "$85", imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuAXfUJ3Jj0239Nllq3LGQba13YRlwAyI3XYY1bb39i77ZKMasmgJ8ngoabKb0n-oKNiBLzzHCUrSsA7yL13EuT8-Oyy31uAyXhhkZMhtPV2XHF4ZK5Un5zN2eFVFdc44sZiek4yREzKeo6Gvpgo5pCRN7kmDKwPunBlSnkqR74YkWR2fL0UVT2IQKd6pqArEH279wNy9g5ObHa6Tk3FRepHSJ4rS21hYbNAbvxbRRuwuBgqpntK9ddAoCXwsA3XWRr-yNQYG0yEIrQ" },
-    { name: "The Royal Shave", description: "Hot towel, straight razor, soothing oils.", price: "$65", imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCufmKyCFjVkw0IDj0r4CwCz3o5fpZQnAodusJ17byRSHd2W4reOwgWZZ22c31yYz5bxptuHK0RdriI8Lh5FPHrRDZHs-xBkyYSXSX5yHzZhjJxCwbWow7a7GG08vImRq48qh5mxJuafhGlDF_b_tUaBQKMqoqWu-CxS52-Yr4Zl6aMSX7gl8TQLQRcWnSwpXbVxr6nb9spfLd8j4GptmTBoyJqD_zXJS_9-2sG8r2pgbNlLBFNshBBgNsOiE71r-IWAvp0RA9y_AQ" },
-    { name: "Advanced Skin Therapy", description: "Deep cleanse & rejuvenating facial.", price: "$120", imageUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCBvzOYPvwxBslRCShRjEW2Vrj0X_Lw_4-RBi78Co2C4PD9rfB9dOOBCz8ihrY8tMJ-rVdw4B7-UKRy9kZavBoMIhOLMHSZhEYV8M4bGFimIGHIojn_UVg9o1GQ8fa7YquSaekjkQgYa-wwRS2puUDupRuMu6jp4kRAhZIr6zhBxDrv2L5zSuG0TEUyEe76nXzhu2EBLyF-h1cy_eohANogEfyNwq218385lOXN-Gp4tM1yh-GZ0D7mqI34HK7Koxmybm51pOfQq_g" }
+  // Enforce local images to fix loading issues
+  const services = [
+    { name: "Premium Haircut", description: "Bespoke styling tailored to your profile.", price: "₹500", imageUrl: "/images/haircut.png" },
+    { name: "Signature Shave", description: "Precision trimming and hot towel shave.", price: "₹300", imageUrl: "/images/shave.png" },
+    { name: "Grooming Package", description: "Haircut, shave, facial, styling.", price: "₹800", imageUrl: "/images/haircut.png" }
   ];
 
   return (
@@ -35,8 +36,8 @@ export default async function Home() {
           <p className="font-body-lg text-body-lg text-on-primary/80 mb-12 max-w-2xl mx-auto">
             {heroSubtitle}
           </p>
-          <a href="/contact#inquiry" className="inline-block font-button text-button uppercase bg-primary text-on-primary px-10 py-4 hover:bg-primary/90 transition-colors duration-300 rounded-none tracking-widest">
-            Book Now
+          <a href="/booking" className="inline-block font-button text-button uppercase bg-secondary text-background px-10 py-4 hover:bg-secondary-fixed transition-colors duration-300 rounded-none tracking-widest font-bold">
+            Reserve Your Service
           </a>
         </div>
       </section>
@@ -63,19 +64,22 @@ export default async function Home() {
               <h2 className="font-headline-lg text-headline-lg text-on-surface">Signature Services</h2>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+          <div className="flex flex-col gap-24">
             {services.map((service, i) => (
-              <div key={i} className={`group cursor-pointer ${i === 1 ? 'pt-0 md:pt-12' : ''}`}>
-                <div className="relative overflow-hidden aspect-[3/4] mb-6">
-                  <img alt={service.name} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src={service.imageUrl} />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
-                </div>
-                <div className="flex justify-between items-start pt-2 border-t border-outline-variant/30 group-hover:border-primary transition-colors duration-300">
-                  <div>
-                    <h3 className="font-headline-md text-headline-md text-on-surface text-xl mb-2">{service.name}</h3>
-                    <p className="font-body-md text-body-md text-on-surface-variant text-sm">{service.description}</p>
+              <div key={i} className={`flex flex-col md:flex-row items-center gap-12 ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                <div className="w-full md:w-1/2">
+                  <div className="relative overflow-hidden aspect-[4/3] shadow-2xl border border-white/10 group">
+                    <img alt={service.name} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" src={service.imageUrl} />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-500"></div>
                   </div>
-                  <span className="font-label-caps text-label-caps text-on-surface mt-2">{service.price}</span>
+                </div>
+                <div className="w-full md:w-1/2 flex flex-col justify-center">
+                  <span className="font-label-caps text-label-caps text-secondary mb-4">{service.price}</span>
+                  <h3 className="font-headline-md text-headline-md text-on-surface text-3xl mb-6">{service.name}</h3>
+                  <p className="font-body-md text-body-md text-on-surface-variant mb-8 max-w-md">{service.description}</p>
+                  <a href="/services" className="inline-block font-button text-button uppercase border border-secondary text-secondary px-8 py-3 hover:bg-secondary hover:text-background transition-colors duration-300 tracking-widest w-max">
+                    View Details
+                  </a>
                 </div>
               </div>
             ))}

@@ -12,7 +12,7 @@ export default function Header() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
-    { href: "/bridal", label: "Bridal" },
+    { href: "/bridal", label: "Bridal/Groom" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/contact", label: "Contact" },
   ];
@@ -23,10 +23,11 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-gradient-to-r from-primary to-[#1B4D40] text-white w-full top-0 sticky border-b border-primary/20 shadow-lg transition-all duration-700 ease-out z-50">
+    <header className="bg-background text-white w-full top-0 sticky border-b border-white/5 shadow-lg transition-all duration-700 ease-out z-50">
       <div className="flex justify-between items-center w-full px-6 md:px-16 py-5 z-50">
-        <Link href="/" className="text-2xl font-serif tracking-[0.2em] uppercase text-secondary-container hover:text-secondary-fixed transition-colors">
-          L'ÉLÉGANCE
+        <Link href="/" className="text-xl md:text-2xl font-serif tracking-[0.1em] text-secondary hover:text-white transition-colors text-center leading-tight flex flex-col items-center">
+          <span className="text-sm tracking-widest text-secondary/80 mb-1">THE</span>
+          MUSTAKEEM'S HANDSOME
         </Link>
 
         {/* Desktop Nav */}
@@ -47,7 +48,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link href="/booking" className="hidden md:block font-button text-button uppercase text-primary bg-secondary-fixed px-6 py-3 hover:bg-secondary-container hover:scale-105 transition-all duration-300 rounded-sm font-bold shadow-md">
+          <Link href="/booking" className="hidden md:block font-button text-button uppercase text-background bg-secondary px-6 py-3 hover:bg-secondary-fixed transition-all duration-300 rounded-sm font-bold shadow-md">
             Book Appointment
           </Link>
           <a href="https://wa.me/918920784349" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="flex items-center justify-center border border-white/20 rounded-sm px-3 py-2 text-[#25D366] bg-white/5 hover:bg-[#25D366] hover:text-white hover:border-transparent transition-all duration-300">
@@ -69,7 +70,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-primary border-t border-primary/20 px-6 py-6 shadow-xl animate-in slide-in-from-top">
+        <div className="md:hidden bg-background border-t border-white/5 px-6 py-6 shadow-xl animate-in slide-in-from-top">
           <nav className="flex flex-col gap-4 font-serif text-sm uppercase">
             {links.map((link) => (
               <Link
@@ -78,14 +79,14 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 className={`py-2 text-lg transition-colors ${
                   isActive(link.href)
-                    ? "text-secondary-fixed font-bold border-l-4 border-secondary-fixed pl-3"
-                    : "text-white/80 hover:text-secondary-fixed hover:pl-3"
+                    ? "text-secondary font-bold border-l-4 border-secondary pl-3"
+                    : "text-white/80 hover:text-secondary hover:pl-3"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <Link href="/booking" onClick={() => setMobileOpen(false)} className="mt-6 text-center font-button text-button uppercase text-primary bg-secondary-fixed px-6 py-4 hover:bg-secondary-container transition-all duration-300 rounded-sm shadow-md font-bold">
+            <Link href="/booking" onClick={() => setMobileOpen(false)} className="mt-6 text-center font-button text-button uppercase text-background bg-secondary px-6 py-4 hover:bg-secondary-fixed transition-all duration-300 rounded-sm shadow-md font-bold">
               Book Appointment
             </Link>
           </nav>
