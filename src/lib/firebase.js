@@ -13,10 +13,17 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase securely to prevent double initialization during HMR
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+let app, db, auth, storage;
 
-export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true,
-});
-export const auth = getAuth(app);
-export const storage = getStorage(app);
+try {
+  app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+  db = initializeFirestore(app, {
+    experimentalForceLongPolling: true,
+  });
+  auth = getAuth(app);
+  storage = getStorage(app);
+} catch (error) {
+  console.warn("Firebase initialization skipped (expected during Vercel build if env vars are missing):", error.message);
+}
+
+export { db, auth, storage };
